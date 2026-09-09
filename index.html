@@ -3,14 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gravity Coding - Water Effect</title>
+    <title>PHILOSOFISH - Water Effect with 3D Fish</title>
     <link rel="stylesheet" href="style.css" />
+    <!-- Three.js and Loaders (including DRACOLoader for compressed GLB) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/DRACOLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
   </head>
   <body>
     <div id="main">
       <div class="unicorn-embed" id="gravityCoding"></div>
+      <canvas id="webgl-canvas"></canvas>
     </div>
     <script src="https://cdn.unicorn.studio/v1.3.2/unicornStudio.umd.js"></script>
-    <script src="script.js"></script>
+    <script src="script.js?v=14"></script>
   </body>
 </html>

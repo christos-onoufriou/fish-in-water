@@ -1,0 +1,34 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Start Local Server",
+            "type": "shell",
+            "command": "lsof -ti:8080 | xargs kill -9 2>/dev/null || true; python3 -m http.server 8080 2>&1",
+            "isBackground": true,
+            "problemMatcher": {
+                "owner": "custom",
+                "pattern": {
+                    "regexp": "^$"
+                },
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": ".*",
+                    "endsPattern": "Serving HTTP.*"
+                }
+            },
+            "presentation": {
+                "reveal": "silent",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Stop Local Server",
+            "type": "shell",
+            "command": "lsof -ti:8080 | xargs kill -9 2>/dev/null || true",
+            "presentation": {
+                "reveal": "silent"
+            }
+        }
+    ]
+}

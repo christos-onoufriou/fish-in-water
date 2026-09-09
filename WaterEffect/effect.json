@@ -12,7 +12,7 @@
             "animating": false,
             "isMask": 0,
             "compiledFragmentShaders": [
-                "#version 300 es\nprecision highp float;in vec2 vTextureCoord;uniform vec2 uMousePos; vec3 getColor(int index) { switch(index) { case 0: return vec3(0.9764705882352941, 0.44313725490196076, 0.1450980392156863); case 1: return vec3(0, 0, 0); case 2: return vec3(0, 0, 0); case 3: return vec3(0, 0, 0); case 4: return vec3(0, 0, 0); case 5: return vec3(0, 0, 0); case 6: return vec3(0, 0, 0); case 7: return vec3(0, 0, 0); case 8: return vec3(0, 0, 0); case 9: return vec3(0, 0, 0); case 10: return vec3(0, 0, 0); case 11: return vec3(0, 0, 0); case 12: return vec3(0, 0, 0); case 13: return vec3(0, 0, 0); case 14: return vec3(0, 0, 0); case 15: return vec3(0, 0, 0); default: return vec3(0.0); } }const float PI = 3.14159265;vec2 rotate(vec2 coord, float angle) { float s = sin(angle); float c = cos(angle); return vec2( coord.x * c - coord.y * s, coord.x * s + coord.y * c ); }out vec4 fragColor;vec3 getColor(vec2 uv) {return vec3(0.9764705882352941, 0.44313725490196076, 0.1450980392156863); }void main() { vec2 uv = vTextureCoord; vec2 pos = vec2(0.5, 0.5) + mix(vec2(0), (uMousePos-0.5), 0.00); uv -= pos; uv /= (0.50*2.); uv = rotate(uv, (0.00 - 0.5) * 2. * PI); vec4 color = vec4(getColor(uv), 1); fragColor = color; }"
+                "#version 300 es\nprecision highp float;in vec2 vTextureCoord;uniform vec2 uMousePos; vec3 getColor(int index) { switch(index) { case 0: return vec3(0.9764705882352941, 0.44313725490196076, 0.1450980392156863); case 1: return vec3(0, 0, 0); case 2: return vec3(0, 0, 0); case 3: return vec3(0, 0, 0); case 4: return vec3(0, 0, 0); case 5: return vec3(0, 0, 0); case 6: return vec3(0, 0, 0); case 7: return vec3(0, 0, 0); case 8: return vec3(0, 0, 0); case 9: return vec3(0, 0, 0); case 10: return vec3(0, 0, 0); case 11: return vec3(0, 0, 0); case 12: return vec3(0, 0, 0); case 13: return vec3(0, 0, 0); case 14: return vec3(0, 0, 0); case 15: return vec3(0, 0, 0); default: return vec3(0.0); } }const float PI = 3.14159265;vec2 rotate(vec2 coord, float angle) { float s = sin(angle); float c = cos(angle); return vec2( coord.x * c - coord.y * s, coord.x * s + coord.y * c ); }out vec4 fragColor;vec3 getColor(vec2 uv) {return vec3(0.9764705882352941, 0.44313725490196076, 0.1450980392156863); }void main() { vec2 uv = vTextureCoord; vec2 pos = vec2(0.5, 0.5) + mix(vec2(0), (uMousePos-0.5), 0.00); uv -= pos; uv /= (0.50*2.); uv = rotate(uv, (0.00 - 0.5) * 2. * PI); vec4 color = vec4(getColor(uv), 1.0); fragColor = color; }"
             ],
             "compiledVertexShaders": [
                 "#version 300 es\nprecision mediump float;in vec3 aVertexPosition; in vec2 aTextureCoord;uniform mat4 uMVMatrix; uniform mat4 uPMatrix;out vec2 vTextureCoord; out vec3 vVertexPosition;void main() { gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0); vTextureCoord = aTextureCoord; }"
@@ -30,7 +30,7 @@
                     "min": 992,
                     "props": {
                         "height": 127,
-                        "textContent": "Gravity Coding",
+                        "textContent": "PHILOSOFISH",
                         "fontStyle": "800",
                         "fontFamily": "Gabarito",
                         "fontSize": 107,
@@ -50,7 +50,8 @@
                         "height": 254,
                         "translateX": 37,
                         "fontSize": 125,
-                        "translateY": 71
+                        "translateY": 71,
+                        "textContent": "PHILOSOFISH"
                     }
                 },
                 {
@@ -62,7 +63,8 @@
                         "translateX": 91,
                         "height": 254,
                         "fontSize": 110,
-                        "translateY": 5
+                        "translateY": 5,
+                        "textContent": "PHILOSOFISH"
                     }
                 }
             ],
@@ -110,7 +112,7 @@
             "fontStyle": "800",
             "fontWeight": "400",
             "textAlign": "center",
-            "textContent": "Gravity Coding", 
+            "textContent": "PHILOSOFISH", 
             "gradientAngle": 0,
             "gradientType": "linear",
             "coords": [
@@ -198,19 +200,25 @@
             "mouseMomentum": 0,
             "isMask": 0,
             "compiledFragmentShaders": [
-                "#version 300 es\nprecision mediump float;in vec3 vVertexPosition; in vec2 vTextureCoord;uniform sampler2D uTexture; uniform float uTime; uniform vec2 uResolution; vec3 blend (int blendMode, vec3 src, vec3 dst) { return src + dst; } const float PHI = 1.61803398874989484820459; float gold_noise(in vec2 xy, in float seed) { return fract(tan(distance(xy*PHI, xy)*seed)*xy.x); }out vec4 fragColor;void main() { vec2 uv = vTextureCoord; vec4 color = texture(uTexture, uv);if(color.a == 0.) { fragColor = vec4(0); return; }vec2 st = uv; vec3 grainRGB = vec3(0);st *= uResolution;float delta = fract((floor(uTime)/20.));if(0 == 1) { grainRGB = vec3( gold_noise(st, delta + 1.), gold_noise(st, delta + 2.), gold_noise(st, delta + 3.) ); } else { grainRGB = vec3(gold_noise(st, delta + 1.)); } if(1 > 0) { color.rgb = mix(color.rgb, blend(1, grainRGB, color.rgb), 0.08); } fragColor = color;}"
+                "#version 300 es\nprecision mediump float;in vec3 vVertexPosition; in vec2 vTextureCoord;uniform sampler2D uTexture; uniform float uTime; uniform vec2 uResolution; uniform float uGrainIntensity; vec3 blend (int blendMode, vec3 src, vec3 dst) { return src + dst; } const float PHI = 1.61803398874989484820459; float gold_noise(in vec2 xy, in float seed) { return fract(tan(distance(xy*PHI, xy)*seed)*xy.x); }out vec4 fragColor;void main() { vec2 uv = vTextureCoord; vec4 color = texture(uTexture, uv);if(color.a == 0.) { fragColor = vec4(0); return; }vec2 st = uv; vec3 grainRGB = vec3(0);st *= uResolution;float delta = fract((floor(uTime)/20.));if(0 == 1) { grainRGB = vec3( gold_noise(st, delta + 1.), gold_noise(st, delta + 2.), gold_noise(st, delta + 3.) ); } else { grainRGB = vec3(gold_noise(st, delta + 1.)); } if(uGrainIntensity > 0.) { color.rgb = mix(color.rgb, blend(1, grainRGB, color.rgb), uGrainIntensity); } fragColor = color;}"
             ],
             "compiledVertexShaders": [
                 "#version 300 es\nprecision mediump float;in vec3 aVertexPosition; in vec2 aTextureCoord;uniform mat4 uMVMatrix; uniform mat4 uPMatrix; uniform mat4 uTextureMatrix;out vec2 vTextureCoord; out vec3 vVertexPosition;void main() { gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0); vTextureCoord = (uTextureMatrix * vec4(aTextureCoord, 0.0, 1.0)).xy; }"
             ],
             "data": {
                 "depth": false,
-                "uniforms": {}
+                "uniforms": {
+                    "grainIntensity": {
+                        "name": "uGrainIntensity",
+                        "type": "1f",
+                        "value": 0.08
+                    }
+                }
             }
         }
     ],
     "options": {
-        "name": "Gravity Coding",
+        "name": "PHILOSOFISH",
         "fps": 60,
         "dpi": 1.5,
         "scale": 1,
